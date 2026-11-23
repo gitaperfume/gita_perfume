@@ -4,11 +4,13 @@ import Image from "next/image";
 import { categoryPhoto, heroPhoto } from "@/lib/images";
 import BottleArt from "@/components/BottleArt";
 import ClientLogos from "@/components/ClientLogos";
+import GuideCard from "@/components/GuideCard";
 import ProductCard from "@/components/ProductCard";
 import Showroom from "@/components/Showroom";
 import Shipping from "@/components/Shipping";
 import Warehouse from "@/components/Warehouse";
 import { getDict } from "@/lib/dictionaries";
+import { guidesByDate } from "@/lib/guides";
 import { alternates, href, isLang, type Lang } from "@/lib/i18n";
 import { getCategories, getProducts, sizePages } from "@/lib/products";
 import { site, waLink } from "@/lib/site";
@@ -157,6 +159,21 @@ export default async function Home({ params }: Props) {
       </section>
 
       <Shipping lang={lang} />
+
+      <section className="section section-tint" aria-labelledby="guides-h">
+        <div className="container">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">{t.guides.homeEyebrow}</p>
+              <h2 id="guides-h">{t.guides.homeH}</h2>
+            </div>
+            <Link href={href(lang, "/panduan")} className="link-arrow">{t.guides.allGuides}</Link>
+          </div>
+          <div className="guide-grid">
+            {guidesByDate().slice(0, 3).map((g) => <GuideCard key={g.slug} g={g} lang={lang} headingLevel={3} />)}
+          </div>
+        </div>
+      </section>
 
       {SHOW_TESTIMONIALS && (
       <section className="section" aria-labelledby="test-h">
