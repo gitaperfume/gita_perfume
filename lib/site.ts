@@ -47,6 +47,7 @@ export function navFor(lang: Lang) {
   return [
     { href: href(lang, "/"), label: c.home },
     { href: href(lang, "/catalog"), label: c.catalog },
+    { href: href(lang, "/panduan"), label: c.guides },
     { href: href(lang, "/about"), label: c.about },
     { href: href(lang, "/contact"), label: c.contact },
   ];

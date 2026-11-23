@@ -73,7 +73,7 @@ p { margin: 0 0 1em; }
 .brand-text { font: 600 1.4rem var(--serif); letter-spacing: .01em; margin: 0; }
 .brand-text em { font-style: italic; color: var(--gold); font-weight: 500; }
 .nav-desktop { display: flex; align-items: center; gap: 28px; }
-.nav-desktop a:not(.btn) { text-decoration: none; font-weight: 500; font-size: .98rem; }
+.nav-desktop a:not(.btn) { white-space: nowrap; text-decoration: none; font-weight: 500; font-size: .98rem; }
 .nav-desktop a:not(.btn):hover { color: var(--gold); }
 .nav-mobile { display: none; position: relative; }
 .nav-mobile summary { list-style: none; cursor: pointer; width: 44px; height: 44px; display: grid; align-content: center; gap: 5px; justify-items: center; }
@@ -247,6 +247,48 @@ a.contact-shop:hover { border-color: #e9a68c; }
 .faq details[open] summary::after { content: "–"; }
 .faq p { margin: 10px 0 0; color: var(--muted); }
 
+/* Guides (panduan) */
+.guide-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.guide-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: transform .2s, box-shadow .2s, border-color .2s; }
+.guide-card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -18px #1f1b1655; border-color: #d6c4a6; }
+.guide-card-link { display: flex; flex-direction: column; height: 100%; text-decoration: none; }
+.guide-card-img { position: relative; display: block; aspect-ratio: 3 / 2; background: var(--tint); overflow: hidden; isolation: isolate; }
+.guide-card-img img { object-fit: cover; }
+.guide-card-body { display: flex; flex-direction: column; gap: 8px; padding: 18px 20px 22px; flex: 1; }
+.guide-card-h { font-size: 1.4rem; margin: 0; }
+.guide-card-desc { flex: 1; }
+.guide-card-more { align-self: flex-start; margin-top: 6px; font-size: .92rem; }
+.guide-meta { font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.guide-h1 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); }
+header .guide-meta { margin: -4px 0 18px; }
+.guide-body { padding-bottom: clamp(56px, 8vw, 96px); }
+.guide-cover { margin: 8px 0 32px; }
+.guide-cover-img { position: relative; display: block; aspect-ratio: 3 / 2; border-radius: var(--radius); overflow: hidden; background: var(--tint); isolation: isolate; }
+.guide-cover-img img { object-fit: cover; }
+.guide-cover figcaption { margin-top: 10px; }
+.guide-toc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 40px; }
+.guide-toc-h { font: 600 .78rem var(--sans); text-transform: uppercase; letter-spacing: .14em; color: var(--gold); margin: 0 0 10px; }
+.guide-toc ol { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+.guide-toc a { text-decoration: none; }
+.guide-toc a:hover { color: var(--gold); text-decoration: underline; }
+.guide-section { margin-bottom: 36px; scroll-margin-top: 96px; }
+.guide-section h2, .guide-faq h2, .guide-products-h { font-size: clamp(1.6rem, 3vw, 2.1rem); scroll-margin-top: 96px; }
+.guide-section p, .guide-list { max-width: 68ch; }
+.guide-section a, .guide-faq a { color: var(--gold); text-underline-offset: 3px; }
+.guide-list { padding-left: 1.3em; margin: 0 0 1em; display: grid; gap: 10px; }
+.guide-list li::marker { color: var(--gold); }
+.guide-table-wrap { overflow-x: auto; margin: 8px 0 1em; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.guide-table { width: 100%; border-collapse: collapse; font-size: .95rem; min-width: 480px; }
+.guide-table th, .guide-table td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.guide-table thead th { background: var(--tint); font-weight: 600; }
+.guide-table tbody tr:last-child th, .guide-table tbody tr:last-child td { border-bottom: 0; }
+.guide-table tbody th { font-weight: 600; }
+.guide-products { margin: 8px 0 40px; }
+.chips-wrap { flex-wrap: wrap; overflow: visible; }
+.guide-faq { margin-bottom: 8px; }
+.guide-faq .faq { margin-top: 8px; }
+.guide-body .note-box { margin-top: 40px; }
+
 /* Footer */
 .site-footer { background: #17130f; color: #d8cdbd; padding: 64px 0 24px; font-size: .95rem; }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 32px; }
@@ -365,6 +407,11 @@ a.contact-shop:hover { border-color: #e9a68c; }
 .building figcaption { display: grid; gap: 2px; }
 
 /* ---------- Responsive ---------- */
+/* Five menu links + quote button + language switch need ~1100px; below that use the menu button. */
+@media (max-width: 1100px) {
+  .nav-desktop { display: none; }
+  .nav-mobile { display: block; }
+}
 @media (max-width: 1024px) {
   .product-grid { grid-template-columns: repeat(3, 1fr); }
   .cat-grid { grid-template-columns: repeat(2, 1fr); }
@@ -374,6 +421,7 @@ a.contact-shop:hover { border-color: #e9a68c; }
   .ship-steps { grid-template-columns: repeat(2, 1fr); }
   .ship-step:nth-child(even) { margin-top: 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .guide-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 860px) {
   .about-hero { grid-template-columns: 1fr; }
@@ -414,6 +462,10 @@ a.contact-shop:hover { border-color: #e9a68c; }
   .note-box { grid-template-columns: 1fr; }
   .note-box .btn { grid-column: 1; grid-row: auto; justify-self: start; }
   .footer-grid { grid-template-columns: 1fr; }
+  .guide-grid { grid-template-columns: 1fr; gap: 16px; }
+  .guide-toc { padding: 16px 18px; }
+  .guide-table { min-width: 0; font-size: .88rem; }
+  .guide-table th, .guide-table td { padding: 10px 10px; }
   .wa-fab { width: 52px; height: 52px; right: 14px; bottom: 14px; }
   .showroom-gallery { gap: 12px; }
   .wh-gallery { grid-template-columns: repeat(2, 1fr); gap: 12px; }
