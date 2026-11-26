@@ -21,15 +21,17 @@ const en = {
       `Contact ${name}, perfume bottle supplier in Jakarta Pusat, Indonesia, for wholesale quotes, samples and custom packaging. WhatsApp ${phone}, email ${email}.`,
     catalogTitle: "Wholesale Perfume Bottles Catalog, 30, 50 & 100 ml",
     catalogDesc:
-      "Browse 200+ wholesale glass perfume bottles: screw-neck, easy-pump and crimp spray bottles, mini travel sprays, roll-ons, frosted bottles and the GP pre-order series. No minimum order, custom logo printing.",
-    categoryDesc: (blurb: string) =>
-      `${blurb} Wholesale with no minimum order and custom logo printing from Gita Perfume Bottle, perfume bottle supplier in Jakarta, Indonesia.`,
+      "Browse 200+ wholesale glass perfume bottles: screw-neck, easy-pump and crimp spray bottles, mini travel sprays, roll-ons, frosted bottles and the GP pre-order series. No minimum order on ready stock, custom logo printing.",
+    categoryDesc: (blurb: string, preorder = false) =>
+      preorder
+        ? `${blurb} Custom logo printing available. Gita Perfume Bottle, perfume bottle supplier in Jakarta, Indonesia.`
+        : `${blurb} Wholesale with no minimum order and custom logo printing from Gita Perfume Bottle, perfume bottle supplier in Jakarta, Indonesia.`,
     sizeTitle: (n: string) => `${n} ml Perfume Bottles`,
     sizeIntro: (n: string, count: number) =>
-      `${count} glass perfume bottle models in ${n} ml from our catalog, ready stock and pre-order. Order from 1 pc, logo printing available.`,
+      `${count} glass perfume bottle models in ${n} ml from our catalog, ready stock and pre-order. Ready stock from 1 pc, pre-order (PO) from 10,000 pcs, logo printing available.`,
     sizeDesc: (n: string, count: number) =>
-      `Wholesale ${n} ml perfume bottles: ${count} glass spray bottle models with no minimum order and custom logo printing. Gita Perfume Bottle, Jakarta, Indonesia.`,
-    productDesc: (summary: string, sizes: string, moq: string) => `${summary} Sizes: ${sizes}. MOQ ${moq}.`,
+      `Wholesale ${n} ml perfume bottles: ${count} glass spray bottle models, no minimum order on ready stock, custom logo printing. Gita Perfume Bottle, Jakarta, Indonesia.`,
+    productDesc: (summary: string, sizes: string, moq: string) => summary.includes(moq) ? `${summary} Sizes: ${sizes}.` : `${summary} Sizes: ${sizes}. MOQ ${moq}.`,
   },
   common: {
     skip: "Skip to content",
@@ -62,9 +64,9 @@ const en = {
     h1a: "Wholesale perfume bottles, ",
     h1em: "from 1 pc",
     lead: (name: string) =>
-      `${name} is a perfume bottle supplier in Jakarta, Indonesia: glass spray bottles, roll-ons, caps and custom packaging for perfume brands, refill shops and resellers. No minimum order, custom logo, shipping across Indonesia.`,
+      `${name} is a perfume bottle supplier in Jakarta, Indonesia: glass spray bottles, roll-ons, caps and custom packaging for perfume brands, refill shops and resellers. No minimum order on ready stock, custom logo, shipping across Indonesia.`,
     browse: "Browse the catalog",
-    stats: [["Bottle models", "200+"], ["Brands served", "1,500+"], ["Minimum order", "1 pc"]] as [string, string][],
+    stats: [["Bottle models", "200+"], ["Brands served", "1,500+"], ["Ready stock from", "1 pc"]] as [string, string][],
     heroAlt: (name: string) => `Red, black and clear glass perfume bottles with gold and black caps on display at ${name}, Jakarta`,
     catEyebrow: "What we make",
     catH: "Perfume bottle categories",
@@ -74,7 +76,7 @@ const en = {
     whyEyebrow: (short: string) => `Why ${short}`,
     whyH: "Everything your fragrance needs, from one supplier",
     usps: [
-      { t: "No Minimum Order", d: "No minimum order as long as stock is available." },
+      { t: "No Minimum Order", d: "Ready stock from 1 pc. Pre-order (PO) bottles: minimum 10,000 pcs." },
       { t: "Custom logo", d: "Printing, hot-stamping and engraving done in-house." },
       { t: "Ready stock", d: "Popular sizes ship within 1–3 working days." },
       { t: "Quality checked", d: "Every batch is leak-tested and inspected before packing." },
@@ -201,7 +203,7 @@ const en = {
     formNote: "Sending opens WhatsApp with your message filled in.",
     faqH: "Frequently asked questions",
     faqs: [
-      { q: "What is your minimum order quantity?", a: "There is no minimum order: you can buy from 1 pc as long as the item is in stock. Custom printing and custom moulds may need a larger run; ask us for details." },
+      { q: "What is your minimum order quantity?", a: "Ready stock has no minimum order: you can buy from 1 pc as long as the item is in stock. Pre-order (PO) bottles, including the GP series, have a minimum order of 10,000 pcs. Custom printing and custom moulds may need a larger run; ask us for details." },
       { q: "Can you print my logo on the bottle?", a: "Yes. We offer screen printing, hot-stamping, frosting and colour spray. A digital proof is sent before production." },
       { q: "How long does production take?", a: "Ready-stock items ship in 1–3 working days. Custom orders usually take 2–4 weeks after sample approval." },
       { q: "Do you ship outside Jakarta?", a: "Yes, we ship to all of Indonesia via cargo and courier partners." },
@@ -211,7 +213,7 @@ const en = {
   },
   catalog: {
     h1: "Product catalog",
-    intro: "Glass perfume bottles from 3 ml to 150 ml, from our October 2026 catalog. Order from 1 pc; all items can be customised with your logo.",
+    intro: "Glass perfume bottles from 3 ml to 150 ml, from our October 2026 catalog. Ready stock from 1 pc, pre-order (PO) bottles from 10,000 pcs. All items can be customised with your logo.",
     all: "All",
     catsAria: "Product categories",
     count: (n: number) => `${n} products`,
@@ -299,15 +301,17 @@ const id: Dict = {
       `Toko botol parfum ${name} di Jakarta Pusat. WhatsApp ${phone}, email ${email}. Info harga grosir, sampel dan botol parfum custom.`,
     catalogTitle: "Katalog Botol Parfum Kaca 30ml, 50ml, 100ml",
     catalogDesc:
-      "Lebih dari 200 model botol parfum kaca: botol spray parfum drat, easy pump dan crimp, spray mini, roll-on, botol frosted dan seri pre-order GP. Harga grosir, tanpa minimal order, bisa cetak logo.",
-    categoryDesc: (blurb: string) =>
-      `${blurb} Jual grosir dan satuan, tanpa minimal order, bisa cetak logo. Gita Perfume Bottle, Jakarta Pusat.`,
+      "Lebih dari 200 model botol parfum kaca: botol spray parfum drat, easy pump dan crimp, spray mini, roll-on, botol frosted dan seri pre-order GP. Harga grosir, ready stock tanpa minimal order, bisa cetak logo.",
+    categoryDesc: (blurb: string, preorder = false) =>
+      preorder
+        ? `${blurb} Bisa cetak logo. Gita Perfume Bottle, Jakarta Pusat.`
+        : `${blurb} Jual grosir dan satuan, tanpa minimal order, bisa cetak logo. Gita Perfume Bottle, Jakarta Pusat.`,
     sizeTitle: (n: string) => `Botol Parfum ${n}ml`,
     sizeIntro: (n: string, count: number) =>
-      `${count} model botol parfum kaca ukuran ${n} ml dari katalog kami, ready stock dan pre-order. Minimal order 1 pcs, bisa cetak logo.`,
+      `${count} model botol parfum kaca ukuran ${n} ml dari katalog kami, ready stock dan pre-order. Ready stock mulai 1 pcs, pre-order (PO) minimal 10.000 pcs, bisa cetak logo.`,
     sizeDesc: (n: string, count: number) =>
-      `Jual botol parfum ${n}ml: ${count} model botol spray parfum kaca. Harga grosir, tanpa minimal order, bisa custom logo. Gita Perfume Bottle, Jakarta Pusat.`,
-    productDesc: (summary: string, sizes: string, moq: string) => `${summary} Ukuran: ${sizes}. Minimal order ${moq}.`,
+      `Jual botol parfum ${n}ml: ${count} model botol spray parfum kaca. Harga grosir, ready stock tanpa minimal order, bisa custom logo. Gita Perfume Bottle, Jakarta Pusat.`,
+    productDesc: (summary: string, sizes: string, moq: string) => summary.includes(moq) ? `${summary} Ukuran: ${sizes}.` : `${summary} Ukuran: ${sizes}. Minimal order ${moq}.`,
   },
   common: {
     skip: "Langsung ke isi halaman",
@@ -340,9 +344,9 @@ const id: Dict = {
     h1a: "Supplier botol parfum di Jakarta, ",
     h1em: "grosir dan satuan",
     lead: (name: string) =>
-      `${name} menjual botol parfum kaca, botol spray parfum, roll-on, tutup botol parfum dan kemasan, ukuran 30ml, 50ml, 100ml dan lainnya. Tanpa minimal order, bisa cetak logo, dikirim dari Jakarta Pusat ke seluruh Indonesia.`,
+      `${name} menjual botol parfum kaca, botol spray parfum, roll-on, tutup botol parfum dan kemasan, ukuran 30ml, 50ml, 100ml dan lainnya. Ready stock tanpa minimal order, bisa cetak logo, dikirim dari Jakarta Pusat ke seluruh Indonesia.`,
     browse: "Lihat katalog",
-    stats: [["Model botol", "200+"], ["Brand pelanggan", "1.500+"], ["Minimal order", "1 pcs"]] as [string, string][],
+    stats: [["Model botol", "200+"], ["Brand pelanggan", "1.500+"], ["Ready stock mulai", "1 pcs"]] as [string, string][],
     heroAlt: (name: string) => `Botol parfum kaca merah, hitam dan bening dengan tutup gold dan hitam di showroom ${name}, Jakarta Pusat`,
     catEyebrow: "Produk",
     catH: "Kategori botol parfum",
@@ -352,7 +356,7 @@ const id: Dict = {
     whyEyebrow: (short: string) => `Kenapa ${short}`,
     whyH: "Botol, tutup dan kemasan dalam satu tempat",
     usps: [
-      { t: "Tanpa minimal order", d: "Bisa beli mulai 1 pcs, selama stok tersedia." },
+      { t: "Tanpa minimal order", d: "Ready stock mulai 1 pcs. Botol pre-order (PO) minimal 10.000 pcs." },
       { t: "Custom logo", d: "Sablon, hot stamping dan grafir dikerjakan sendiri." },
       { t: "Ready stock", d: "Ukuran populer dikirim dalam 1–3 hari kerja." },
       { t: "Kualitas terjamin", d: "Semuanya dicek sebelum dikirim." },
@@ -491,7 +495,7 @@ const id: Dict = {
     formNote: "Setelah klik Kirim, WhatsApp akan terbuka dengan pesan yang sudah terisi.",
     faqH: "Pertanyaan umum",
     faqs: [
-      { q: "Berapa minimal order?", a: "Tidak ada minimal order, bisa beli mulai 1 pcs selama stok tersedia. Untuk cetak logo atau cetakan custom, silakan tanya jumlah minimalnya." },
+      { q: "Berapa minimal order?", a: "Barang ready stock tidak ada minimal order, bisa beli mulai 1 pcs selama stok tersedia. Botol pre-order (PO), termasuk seri GP, minimal order 10.000 pcs. Untuk cetak logo atau cetakan custom, silakan tanya jumlah minimalnya." },
       { q: "Apakah bisa cetak logo di botol?", a: "Bisa. Tersedia sablon, hot stamping, frosting dan spray warna. Desain dikirim dulu untuk dicek sebelum produksi." },
       { q: "Berapa lama proses produksi?", a: "Barang ready stock dikirim dalam 1–3 hari kerja. Order custom sekitar 2–4 minggu setelah sampel disetujui." },
       { q: "Apakah bisa kirim ke luar Jakarta?", a: "Bisa, kami kirim ke seluruh Indonesia lewat kargo dan kurir." },
@@ -501,7 +505,7 @@ const id: Dict = {
   },
   catalog: {
     h1: "Katalog botol parfum",
-    intro: "Botol parfum kaca dan botol spray parfum ukuran 3 ml sampai 150 ml, dari katalog Oktober 2026. Minimal order 1 pcs, semua bisa cetak logo.",
+    intro: "Botol parfum kaca dan botol spray parfum ukuran 3 ml sampai 150 ml, dari katalog Oktober 2026. Ready stock mulai 1 pcs, botol pre-order (PO) minimal 10.000 pcs. Semua bisa cetak logo.",
     all: "Semua",
     catsAria: "Kategori produk",
     count: (n: number) => `${n} produk`,

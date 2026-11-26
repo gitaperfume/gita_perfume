@@ -72,10 +72,10 @@ const categoryRows: CategoryRow[] = [
     title: "Frosted & Gradient Perfume Bottles",
     nameId: "Botol Frosted & Gradasi", titleId: "Botol Parfum Frosted & Gradasi",
     blurbId: "Botol parfum kaca warna frosted dan gradasi." },
-  { slug: "pre-order-bottles", name: "Pre-order Bottles", blurb: "The GP series and other new perfume bottle designs, available to order ahead.", shape: "square",
+  { slug: "pre-order-bottles", name: "Pre-order Bottles", blurb: "The GP series and other new perfume bottle designs, available on pre-order (PO). Minimum order 10,000 pcs.", shape: "square",
     title: "Pre-order Perfume Bottles (GP Series)",
     nameId: "Botol Pre-order", titleId: "Botol Parfum Pre-order Seri GP",
-    blurbId: "Botol parfum seri GP dan model-model baru, sistem pre-order." },
+    blurbId: "Botol parfum seri GP dan model-model baru, sistem pre-order (PO). Minimal order 10.000 pcs." },
 ];
 
 type Row = Pick<Product, "slug" | "name" | "code" | "category" | "closure" | "badge" | "featured"> & { sizes: string };
@@ -359,7 +359,7 @@ function summaryOf(r: Row, sizes: string[]) {
     : `glass perfume bottle with ${NECK[r.closure].replace(/ \(.*\)/, "").toLowerCase()}`;
   const lead = `${r.name}: ${kind}, ${range}.`;
   const tail =
-    r.badge === "Pre-order" ? " Available on pre-order; ask us for the lead time and colour options."
+    r.badge === "Pre-order" ? " Pre-order (PO), minimum order 10,000 pcs. Ask us for the lead time and colour options."
     : r.badge === "New" ? " New in our catalog."
     : " Ready stock, no minimum order.";
   return lead + tail + " Logo printing available on request.";
@@ -373,11 +373,14 @@ function summaryIdOf(r: Row, sizes: string[]) {
     : `botol parfum kaca dengan ${NECK_ID[r.closure].replace(/ \(.*\)/, "").toLowerCase()}`;
   const lead = `${r.name}: ${kind}, ${range}.`;
   const tail =
-    r.badge === "Pre-order" ? " Sistem pre-order, tanyakan estimasi waktu dan pilihan warna."
+    r.badge === "Pre-order" ? " Sistem pre-order (PO), minimal order 10.000 pcs. Tanyakan estimasi waktu dan pilihan warna."
     : r.badge === "New" ? " Model baru."
     : " Ready stock, tanpa minimal order.";
   return lead + tail + " Bisa cetak logo.";
 }
+
+/** Minimum order for pre-order (PO) bottles. Ready stock has no minimum (1 pc). */
+export const PO_MOQ = { id: "10.000 pcs", en: "10,000 pcs" } as const;
 
 const productsEn: Product[] = rows.map((r) => {
   const sizes = r.sizes.split("/").map((s) => `${s} ml`);
@@ -389,7 +392,7 @@ const productsEn: Product[] = rows.map((r) => {
     cap: capOf(r),
     material: "Glass",
     neck: NECK[r.closure],
-    moq: "1 pc",
+    moq: r.badge === "Pre-order" ? PO_MOQ.en : "1 pc",
     finishes: finishesOf(r),
     summary: summaryOf(r, sizes),
   };
@@ -401,7 +404,7 @@ const productsId: Product[] = rows.map((r, i) => {
     ...en,
     material: "Kaca",
     neck: NECK_ID[r.closure],
-    moq: "1 pcs",
+    moq: r.badge === "Pre-order" ? PO_MOQ.id : "1 pcs",
     finishes: en.finishes.map((f) => FINISH_ID[f] ?? f),
     summary: summaryIdOf(r, en.sizes),
   };
