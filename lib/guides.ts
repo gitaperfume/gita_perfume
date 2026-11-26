@@ -141,7 +141,7 @@ export const guides: Guide[] = [
         },
         {
           q: "Apakah bisa beli botol parfum satuan?",
-          a: "Bisa. Gita Perfume Bottle tidak punya minimal order, jadi bisa beli mulai 1 pcs selama stok tersedia.",
+          a: "Bisa, untuk botol ready stock. Tidak ada minimal order, jadi bisa beli mulai 1 pcs selama stok tersedia. Botol pre-order (PO) minimal order 10.000 pcs.",
         },
         {
           q: "Bagaimana cara cek botol parfum tidak bocor?",
@@ -231,7 +231,7 @@ export const guides: Guide[] = [
         },
         {
           q: "Can I buy a single perfume bottle?",
-          a: "Yes. Gita Perfume Bottle has no minimum order, so you can buy from 1 pc while stock lasts.",
+          a: "Yes, for ready-stock bottles. There is no minimum order, so you can buy from 1 pc while stock lasts. Pre-order (PO) bottles have a minimum order of 10,000 pcs.",
         },
         {
           q: "How do I check that a perfume bottle does not leak?",

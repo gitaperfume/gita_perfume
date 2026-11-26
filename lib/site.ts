@@ -9,7 +9,7 @@ export const site = {
   shortName: "Gita",
   tagline: "Perfume bottles & packaging, made to order",
   description:
-    "Gita Perfume Bottle supplies glass perfume bottles, spray atomizers, roll-on bottles, caps and custom packaging for perfume brands, refill shops and resellers. No minimum order, custom logo printing, nationwide shipping.",
+    "Gita Perfume Bottle supplies glass perfume bottles, spray atomizers, roll-on bottles, caps and custom packaging for perfume brands, refill shops and resellers. No minimum order on ready stock, custom logo printing, nationwide shipping.",
   // Real domain goes in NEXT_PUBLIC_SITE_URL at launch. Until then, use the Vercel URL
   // so canonical links, sitemap and social previews point at a page that exists.
   url:

@@ -25,7 +25,7 @@ function pageFor(slug: string, lang: Lang) {
   }
   const c = getCategory(slug, lang);
   if (!c) return null;
-  return { title: c.title, intro: c.blurb, description: m.categoryDesc(c.blurb), items: productsIn(c.slug, lang) };
+  return { title: c.title, intro: c.blurb, description: m.categoryDesc(c.blurb, c.slug === "pre-order-bottles"), items: productsIn(c.slug, lang) };
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
